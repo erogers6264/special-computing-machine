@@ -3,13 +3,13 @@ import pygame
 pygame.init()
 
 # Define some colors
-GREEN = (0, 255, 0)
-PURPLE = (255, 255, 255)
-DARKBLUE = (16, 23, 99)
-YELLOW = (255, 255, 255)
-RED = (255, 255, 255)
-WHITE = (255, 255, 255)
-ORANGE = (255, 255, 255)
+DARKBLUE = (0, 63, 99)
+YELLOW = (242, 177, 56)
+WHITE = (217, 217, 217)
+GREY = (161, 165, 166)
+CHARCOAL = (53, 61, 64)
+GREEN = (102, 140, 74)
+ORANGE = (242, 172, 41)
 
 score = 0
 lives = 3
