@@ -12,3 +12,8 @@ ORANGE = (255, 255, 255)
 
 score = 0
 lives = 3
+
+# Open a new window
+size = (800, 600)
+screen = pygame.display.set_mode(size)
+pygame.display.set_caption("Breakout Game")
