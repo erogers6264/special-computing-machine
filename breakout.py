@@ -8,6 +8,7 @@ PURPLE = (255, 255, 255)
 DARKBLUE = (16, 23, 99)
 YELLOW = (255, 255, 255)
 RED = (255, 255, 255)
+WHITE = (255, 255, 255)
 ORANGE = (255, 255, 255)
 
 score = 0
@@ -32,5 +33,15 @@ while carryOn:
 
     # Refreshing Screen
     screen.fill(DARKBLUE)
-    
+    pygame.draw.line(screen, WHITE, [0, 38], [800, 38], 2)
+    font = pygame.font.Font(None, 34)
+    text = font.render("Score: " + str(score), 1, WHITE)
+    screen.blit(text, (20, 10))
+
+    text = font.render("Lives: " + str(lives), 1, WHITE)
+    screen.blit(text, (650, 10))
+
     pygame.display.flip()
+    clock.tick(60)
+    
+pygame.quit()
