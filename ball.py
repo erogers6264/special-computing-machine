@@ -13,7 +13,7 @@ class Ball(pygame.sprite.Sprite):
         
         pygame.draw.rect(self.image, color, [0, 0, width, height])
         
-        self.velocity = [randint(4, 8), randint(-8, 8)]
+        self.velocity = [randint(4, 8), randint(-9, 7) + 1]
         
         self.rect = self.image.get_rect()
         
