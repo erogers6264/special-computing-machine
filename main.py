@@ -12,7 +12,7 @@ WHITE = (217, 217, 217)
 GREY = (161, 165, 166)
 CHARCOAL = (53, 61, 64)
 GREEN = (102, 140, 74)
-ORANGE = (242, 172, 41)
+ORANGE = (242, 100, 41)
 
 score = 0
 lives = 3
@@ -26,7 +26,7 @@ pygame.display.set_caption("Breakout Game")
 all_sprites = pygame.sprite.Group()
 
 # Instantiate the paddle
-paddle = Paddle(YELLOW, 100, 25)
+paddle = Paddle(WHITE, 100, 25)
 paddle.rect.x = 350
 paddle.rect.y = 560
 
@@ -42,6 +42,14 @@ while carryOn:
     for event in pygame.event.get(): # User did something
         if event.type == pygame.QUIT:
             carryOn = False
+
+    # Move paddle with arrows
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT]:
+        paddle.moveLeft(5)
+    if keys[pygame.K_RIGHT]:
+        paddle.moveRight(5)
+
     # Implementing Game Logic
     all_sprites.update()
 
@@ -60,5 +68,5 @@ while carryOn:
 
     pygame.display.flip()
     clock.tick(60)
-    
+
 pygame.quit()
