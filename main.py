@@ -2,6 +2,7 @@
 import pygame
 from paddle import Paddle
 from ball import Ball
+from brick import Brick
 
 pygame.init()
 
@@ -34,6 +35,19 @@ paddle.rect.y = 560
 ball = Ball(WHITE, 10, 10)
 ball.rect.x = 345
 ball.rect.y = 560
+
+# Create brick wall
+all_bricks = pygame.sprite.Group()
+row_spacing = 60
+for color in ['DARKGREY', 'BLUE', 'RED']:
+    for i in range(7):
+        brick = Brick(color, 80, 30)
+        brick.rect.x = 60 + i * 100
+        brick.rect.y = row_spacing
+        all_sprites.add(brick)
+        all_bricks.add(brick)
+    row_spacing += 40
+
 
 all_sprites.add(paddle)
 all_sprites.add(ball)
@@ -68,6 +82,14 @@ while carryOn:
         ball.velocity[0] = -ball.velocity[0]
     if ball.rect.y >= 590:
         ball.velocity[1] = -ball.velocity[1]
+        lives -= 1
+        if lives == 0:
+            font = pygame.font.Font(None, 74)
+            text = font.render("GAME OVER", 1, WHITE)
+            screen.blit(text, (250, 300))
+            pygame.display.flip()
+            pygame.time.wait(3000)
+            carryOn = False
     if ball.rect.y <= 40:
         ball.velocity[1] = -ball.velocity[1]
 
@@ -76,6 +98,21 @@ while carryOn:
         ball.rect.x -= ball.velocity[0]
         ball.rect.y -= ball.velocity[1]
         ball.bounce()
+
+    # Detect brick collision
+    brick_collisions = pygame.sprite.spritecollide(ball, all_bricks, False)
+    for brick in brick_collisions:
+        ball.bounce()
+        score += 1
+        brick.kill()
+
+        if len(all_bricks) == 0:
+            font = pygame.font.Font(None, 74)
+            text = font.render("LEVEL COMPLETE", 1, WHITE)
+            screen.blit(text, (200, 300))
+            pygame.display.flip()
+            pygame.time.wait(3000)
+            carryOn = False
 
     # Refreshing Screen
     screen.fill(DARKBLUE)
