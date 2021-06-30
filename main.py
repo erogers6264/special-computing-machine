@@ -1,6 +1,7 @@
 # Import the pygame library and intialize the game engine.
 import pygame
 from paddle import Paddle
+from ball import Ball
 
 # Start your engines
 pygame.init()
@@ -26,11 +27,17 @@ pygame.display.set_caption("Breakout Game")
 all_sprites = pygame.sprite.Group()
 
 # Instantiate the paddle
-paddle = Paddle(WHITE, 100, 25)
+paddle = Paddle(YELLOW, 100, 25)
 paddle.rect.x = 350
 paddle.rect.y = 560
 
+# Instantiate the ball
+ball = Ball(WHITE, 10, 10)
+ball.rect.x = 345
+ball.rect.y = 560
+
 all_sprites.add(paddle)
+all_sprites.add(ball)
 
 # The main program loop
 carryOn = True
@@ -46,12 +53,22 @@ while carryOn:
     # Move paddle with arrows
     keys = pygame.key.get_pressed()
     if keys[pygame.K_LEFT]:
-        paddle.moveLeft(5)
+        paddle.moveLeft(10)
     if keys[pygame.K_RIGHT]:
-        paddle.moveRight(5)
+        paddle.moveRight(10)
 
     # Implementing Game Logic
     all_sprites.update()
+
+    # Check if ball is bouncing?
+    if ball.rect.x >= 790:
+        ball.velocity[0] = -ball.velocity[0]
+    if ball.rect.x <= 0:
+        ball.velocity[0] = -ball.velocity[0]
+    if ball.rect.y >= 590:
+        ball.velocity[1] = -ball.velocity[1]
+    if ball.rect.y <= 40:
+        ball.velocity[1] = -ball.velocity[1]
 
     # Refreshing Screen
     screen.fill(DARKBLUE)
