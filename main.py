@@ -3,7 +3,6 @@ import pygame
 from paddle import Paddle
 from ball import Ball
 
-# Start your engines
 pygame.init()
 
 # Define some colors
@@ -60,7 +59,9 @@ while carryOn:
     # Implementing Game Logic
     all_sprites.update()
 
-    # Check if ball is bouncing?
+    # Check if ball is bouncing? Should this be built into
+    # the ball to check its own bounds and change its own
+    # velocity? What if I want multiple balls?
     if ball.rect.x >= 790:
         ball.velocity[0] = -ball.velocity[0]
     if ball.rect.x <= 0:
@@ -69,6 +70,12 @@ while carryOn:
         ball.velocity[1] = -ball.velocity[1]
     if ball.rect.y <= 40:
         ball.velocity[1] = -ball.velocity[1]
+
+    # Detect paddle collision
+    if pygame.sprite.collide_mask(ball, paddle):
+        ball.rect.x -= ball.velocity[0]
+        ball.rect.y -= ball.velocity[1]
+        ball.bounce()
 
     # Refreshing Screen
     screen.fill(DARKBLUE)
