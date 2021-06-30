@@ -9,13 +9,19 @@ class Paddle(pygame.sprite.Sprite):
         
         # Pass in the color of the paddle
         # and its x and y position, w & h...
-        self.surface = pygame.Surface([width, height])
-        self.surface.fill(BLACK)
-        self.surface.set_colorkey(BLACK)
+        self.image = pygame.Surface([width, height])
+        self.image.fill(BLACK)
+        self.image.set_colorkey(BLACK)
         
         # Draw the paddle as a rectangle
-        pygame.draw.rect(self.surface, color, [0, 0, width, height])
-        
+        pygame.draw.rect(self.image, color, [0, 0, width, height])
+
         # Fetch the rectangle object that has the dimensions of
         # the image
-        self.rect = self.surface.get_rect()
+        self.rect = self.image.get_rect()
+
+    def move_left():
+        pass
+
+    def move_right():
+        pass

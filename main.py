@@ -1,5 +1,8 @@
 # Import the pygame library and intialize the game engine.
 import pygame
+from paddle import Paddle
+
+# Start your engines
 pygame.init()
 
 # Define some colors
@@ -19,6 +22,16 @@ size = (800, 600)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Breakout Game")
 
+# List of all sprites
+all_sprites = pygame.sprite.Group()
+
+# Instantiate the paddle
+paddle = Paddle(YELLOW, 100, 25)
+paddle.rect.x = 350
+paddle.rect.y = 560
+
+all_sprites.add(paddle)
+
 # The main program loop
 carryOn = True
 
@@ -30,6 +43,7 @@ while carryOn:
         if event.type == pygame.QUIT:
             carryOn = False
     # Implementing Game Logic
+    all_sprites.update()
 
     # Refreshing Screen
     screen.fill(DARKBLUE)
@@ -40,6 +54,9 @@ while carryOn:
 
     text = font.render("Lives: " + str(lives), 1, WHITE)
     screen.blit(text, (650, 10))
+
+    # Draw sprites
+    all_sprites.draw(screen)
 
     pygame.display.flip()
     clock.tick(60)
