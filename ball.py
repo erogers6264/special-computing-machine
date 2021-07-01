@@ -1,5 +1,7 @@
 import pygame
+import random
 from random import randint
+
 BLACK = (0, 0, 0)
 
 class Ball(pygame.sprite.Sprite):
@@ -23,4 +25,4 @@ class Ball(pygame.sprite.Sprite):
 
     def bounce(self):
         self.velocity[0] = -self.velocity[0]
-        self.velocity[1] = randint(-9, 7) + 1
+        self.velocity[1] = random.choice([randint(-8, 0), randint(1,8)])

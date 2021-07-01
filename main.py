@@ -39,7 +39,7 @@ ball.rect.y = 560
 # Create brick wall
 all_bricks = pygame.sprite.Group()
 row_spacing = 60
-for color in ['DARKGREY', 'BLUE', 'RED']:
+for color in [CHARCOAL, GREY, GREEN]:
     for i in range(7):
         brick = Brick(color, 80, 30)
         brick.rect.x = 60 + i * 100
@@ -113,6 +113,10 @@ while carryOn:
             pygame.display.flip()
             pygame.time.wait(3000)
             carryOn = False
+
+    # Check y velocity is not 0
+    if ball.velocity[1] == 0:
+        ball.velocity[1] += 1
 
     # Refreshing Screen
     screen.fill(DARKBLUE)
