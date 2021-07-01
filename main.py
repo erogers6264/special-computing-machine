@@ -14,6 +14,7 @@ GREY = (161, 165, 166)
 CHARCOAL = (53, 61, 64)
 GREEN = (102, 140, 74)
 ORANGE = (242, 100, 41)
+MAGENTA = (255, 0, 127)
 
 score = 0
 lives = 3
