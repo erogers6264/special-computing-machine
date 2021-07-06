@@ -30,11 +30,13 @@ all_sprites = pygame.sprite.Group()
 paddle = Paddle(YELLOW, 100, 25)
 paddle.rect.x = 350
 paddle.rect.y = 560
+all_sprites.add(paddle)
 
 # Instantiate the ball
 ball = Ball(WHITE, 10, 10)
 ball.rect.x = 345
 ball.rect.y = 560
+all_sprites.add(ball)
 
 # Create brick wall
 all_bricks = pygame.sprite.Group()
@@ -47,10 +49,6 @@ for color in [CHARCOAL, GREY, GREEN]:
         all_sprites.add(brick)
         all_bricks.add(brick)
     row_spacing += 40
-
-
-all_sprites.add(paddle)
-all_sprites.add(ball)
 
 # The main program loop
 carryOn = True
